@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUA MARCA — Luminárias &amp; Decoração 3D</title>
+<!-- 
+  NOTA: troquem "SUA MARCA" (título da aba, header, footer) pelo nome definitivo.
+  Botões "Em breve" — quando tiver link do Mercado Pago, adicionem href na tag <a>.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EDE6D6;
+    --paper-deep: #E3D9C3;
+    --ink: #2B2A28;
+    --contour: #8B5A2B;
+    --elevation: #D9491F;
+    --route: #2F6E62;
+    --graphite: #6F6A5E;
+    --card-bg: #F6F1E7;
+    --line: rgba(43, 42, 40, 0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: 'Spectral', serif; font-weight: 600; line-height: 1.15; }
+  .eyebrow { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--contour); }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  header { position: sticky; top: 0; background: rgba(237, 230, 214, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); z-index: 50; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo { font-family: 'Spectral', serif; font-weight: 700; font-size: 1.25rem; }
+  .logo span { color: var(--elevation); }
+  nav ul { display: flex; gap: 32px; list-style: none; }
+  nav a { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.75; transition: opacity 0.2s; }
+  nav a:hover { opacity: 1; }
+  @media (max-width: 720px) { nav ul { display: none; } }
+
+  .hero { position: relative; overflow: hidden; padding: 96px 0 72px; border-bottom: 1px solid var(--line); }
+  .contour-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.5; pointer-events: none; }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero h1 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); margin: 14px 0 20px; max-width: 20ch; }
+  .hero p.lede { font-size: 1.05rem; color: var(--graphite); max-width: 52ch; margin-bottom: 28px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 14px 22px; border-radius: 3px; border: 1px solid var(--ink); transition: transform 0.15s ease; }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-ghost { background: transparent; border-color: var(--line); color: var(--graphite); }
+  .btn-disabled { background: transparent; border: 1px dashed var(--graphite); color: var(--graphite); cursor: not-allowed; opacity: 0.8; }
+
+  section.block { padding: 80px 0; border-bottom: 1px solid var(--line); }
+  .section-head { max-width: 60ch; margin-bottom: 44px; }
+  .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 10px; }
+  .section-head p { color: var(--graphite); margin-top: 12px; }
+
+  .grid-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .grid-products { grid-template-columns: 1fr; } }
+  .product-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+  .product-art { aspect-ratio: 4/3; background: var(--paper-deep); display: flex; align-items: center; justify-content: center; }
+  .product-art svg { width: 50%; height: 50%; }
+  .product-body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .product-body .cat { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--route); text-transform: uppercase; letter-spacing: 0.05em; }
+  .product-body h3 { font-size: 1.05rem; }
+  .product-body .price { font-family: 'Space Mono', monospace; font-size: 1rem; margin-top: auto; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+  .step .step-num { font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--elevation); border: 1px solid var(--elevation); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .step h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .step p { color: var(--graphite); font-size: 0.92rem; }
+
+  footer { padding: 48px 0; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer .status { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--graphite); }
+  footer .status .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--elevation); margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">SUA<span>MARCA</span></div>
+    <nav><ul>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="contour-bg" viewBox="0 0 1100 500" preserveAspectRatio="none">
+    <g fill="none" stroke="#8B5A2B" stroke-width="1">
+      <path d="M -50 460 Q 200 380 450 440 T 1150 400" opacity="0.5"/>
+      <path d="M -50 420 Q 220 340 470 400 T 1150 360" opacity="0.4"/>
+      <path d="M -50 380 Q 240 300 490 360 T 1150 320" opacity="0.35"/>
+      <path d="M -50 340 Q 260 260 510 320 T 1150 280" opacity="0.28"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow">Luminárias &amp; decoração 3D</span>
+    <h1>Peças que iluminam e organizam, impressas uma a uma.</h1>
+    <p class="lede">Luminárias, vasos e utilitários com acabamento revisado peça a peça. Modelos selecionados, com opção de personalização de cor e tamanho.</p>
+    <div class="hero-actions">
+      <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="produtos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Catálogo</span>
+      <h2>Feito pra durar, não só pra imprimir.</h2>
+      <p>Cada peça passa por revisão de acabamento antes de ser embalada.</p>
+    </div>
+    <div class="grid-products">
+      <div class="product-card">
+        <div class="product-art">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#2B2A28" stroke-width="2.2">
+            <path d="M50 15 L35 45 L65 45 Z"/>
+            <path d="M40 45 L60 45 L58 75 L42 75 Z"/>
+            <line x1="50" y1="75" x2="50" y2="88"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="cat">Luminária</span>
+          <h3>Luminária de mesa minimalista</h3>
+          <div class="price">R$ 59,90</div>
+          <a href="#" class="btn btn-disabled">Comprar — em breve</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-art">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#2B2A28" stroke-width="2.2">
+            <path d="M35 25 L65 25 L60 60 L40 60 Z"/>
+            <ellipse cx="50" cy="25" rx="15" ry="5"/>
+            <path d="M40 60 Q50 70 60 60"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="cat">Decorativo</span>
+          <h3>Vaso decorativo pequeno</h3>
+          <div class="price">R$ 39,90</div>
+          <a href="#" class="btn btn-disabled">Comprar — em breve</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-art">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#2B2A28" stroke-width="2.2">
+            <path d="M20 30 Q50 15 80 30 L80 40 Q50 25 20 40 Z"/>
+            <path d="M25 45 Q50 33 75 45"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="cat">Utilitário</span>
+          <h3>Organizador de cabos</h3>
+          <div class="price">R$ 15,90</div>
+          <a href="#" class="btn btn-disabled">Comprar — em breve</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Do catálogo à sua casa.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Escolha a peça</h3><p>Selecione o produto, cor e variação disponível.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>A gente imprime</h3><p>Produção sob encomenda, com revisão de acabamento antes do envio.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Você recebe</h3><p>Embalagem cuidadosa, pronta pra usar assim que chegar.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">SUA MARCA</span>
+      <div style="color:var(--graphite); font-size:0.85rem;">Luminárias &amp; decoração 3D — Blumenau, SC</div>
+    </div>
+    <div class="status"><span class="dot"></span>Loja em construção — pagamento online em breve</div>
+  </div>
+</footer>
+
+</body>
+</html>
